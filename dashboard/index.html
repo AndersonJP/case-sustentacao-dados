@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  Template do dashboard. NÃO abra este arquivo direto:
+  rode `python src/rodar_local.py`, que injeta os dados da camada gold
+  no marcador abaixo e gera dashboard/index.html (1 arquivo, funciona offline).
+  Sem bibliotecas externas: só HTML + SVG + JavaScript puro.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Sustentação · Antes e depois dos dashboards</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --card: #ffffff; --border: #e6e5e0;
+    --text-1: #0b0b0b; --text-2: #52514e; --text-3: #8a8984; --grid: #ecebe6;
+    --good: #0f7b3a;
+    /* paleta categórica (ordem fixa, validada para daltonismo) */
+    --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #eda100; --c5: #e87ba4;
+    --antes: #b4b2a9;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--text-1);
+         font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 24px 40px; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -.01em; }
+  .sub { color: var(--text-2); margin: 0; }
+  .tag { font-size: 12px; color: var(--text-3); border: 1px solid var(--border); border-radius: 99px; padding: 3px 10px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0 16px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .kpi .rotulo { color: var(--text-2); font-size: 13px; }
+  .kpi .valor { font-size: 30px; font-weight: 650; letter-spacing: -.02em; margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+  .kpi .antes { color: var(--text-3); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .kpi .delta { color: var(--good); font-weight: 600; }
+  .kpi.hero { border-color: #b9d4f3; background: #f5f9fe; }
+  .grid2 { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; margin-top: 12px; }
+  h2 { font-size: 15px; margin: 0 0 2px; }
+  .nota { color: var(--text-2); font-size: 13px; margin: 0 0 10px; }
+  .legenda { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--text-2); margin: 6px 0 4px; }
+  .legenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .legenda i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  svg { width: 100%; height: auto; display: block; overflow: visible; }
+  svg text { font-family: inherit; }
+  .eixo { fill: var(--text-3); font-size: 11px; }
+  .rot { fill: var(--text-2); font-size: 11.5px; }
+  .forte { fill: var(--text-1); font-size: 12px; font-weight: 600; }
+  #tip { position: fixed; pointer-events: none; background: #1d1d1b; color: #fff; font-size: 12.5px;
+         padding: 8px 10px; border-radius: 8px; opacity: 0; transition: opacity .1s; max-width: 260px; z-index: 9; }
+  #tip b { display: block; margin-bottom: 2px; }
+  footer { color: var(--text-3); font-size: 12px; margin-top: 18px; }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Painel de Sustentação · Produtos digitais (banco)</h1>
+      <p class="sub">Efeito da implantação de dashboards e métricas sobre a demanda de sustentação — 2025</p>
+    </div>
+    <span class="tag">Dados fictícios · fonte: camada gold (Jira + Alertas + Cadastro de sistemas)</span>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>Chamados abertos por mês, por categoria</h2>
+    <p class="nota">Extração de dados e dúvidas eram ~65% do volume. Viraram self-service no dashboard.</p>
+    <div class="legenda" id="leg-mensal"></div>
+    <svg id="g-mensal" viewBox="0 0 1100 350" role="img" aria-label="Barras empilhadas de chamados por mês e categoria"></svg>
+  </section>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>Incidentes recorrentes por sistema (Pareto)</h2>
+      <p class="nota" id="nota-pareto"></p>
+      <div class="legenda">
+        <span><i style="background:var(--antes)"></i>Q1/2025 (antes)</span>
+        <span><i style="background:var(--c1)"></i>Q4/2025 (depois)</span>
+      </div>
+      <svg id="g-pareto" viewBox="0 0 640 300" role="img" aria-label="Recorrentes por sistema antes e depois"></svg>
+    </section>
+    <section class="card">
+      <h2>Alertas resolvidos antes de virar chamado</h2>
+      <p class="nota">Monitoramento proativo a partir de jul/2025.</p>
+      <svg id="g-alertas" viewBox="0 0 420 300" role="img" aria-label="Percentual de alertas evitados por mês"></svg>
+    </section>
+  </div>
+
+  <footer>Gerado por <code>src/rodar_local.py</code>. Mesmas tabelas gold alimentam Power BI, QuickSight ou Tableau via Databricks SQL Warehouse.</footer>
+</main>
+<div id="tip"></div>
+
+<script>
+// Dados injetados pelo pipeline (camada gold). O marcador abaixo é substituído pelo JSON.
+const D = {"chamados_mensal": [{"mes_referencia": "2025-01", "categoria": "Extração / relatório manual", "qtd_chamados": 192, "horas_trabalhadas": 547.3, "mttr_horas": 89.7, "pct_dentro_sla": 68.2}, {"mes_referencia": "2025-01", "categoria": "Dúvida sobre dado", "qtd_chamados": 105, "horas_trabalhadas": 123.8, "mttr_horas": 89.3, "pct_dentro_sla": 72.4}, {"mes_referencia": "2025-01", "categoria": "Incidente recorrente", "qtd_chamados": 94, "horas_trabalhadas": 384.0, "mttr_horas": 46.4, "pct_dentro_sla": 67.0}, {"mes_referencia": "2025-01", "categoria": "Melhoria", "qtd_chamados": 19, "horas_trabalhadas": 134.5, "mttr_horas": 62.7, "pct_dentro_sla": 84.2}, {"mes_referencia": "2025-01", "categoria": "Incidente novo", "qtd_chamados": 38, "horas_trabalhadas": 210.0, "mttr_horas": 46.4, "pct_dentro_sla": 65.8}, {"mes_referencia": "2025-02", "categoria": "Dúvida sobre dado", "qtd_chamados": 60, "horas_trabalhadas": 77.6, "mttr_horas": 89.3, "pct_dentro_sla": 68.3}, {"mes_referencia": "2025-02", "categoria": "Melhoria", "qtd_chamados": 13, "horas_trabalhadas": 147.0, "mttr_horas": 83.3, "pct_dentro_sla": 61.5}, {"mes_referencia": "2025-02", "categoria": "Extração / relatório manual", "qtd_chamados": 169, "horas_trabalhadas": 514.3, "mttr_horas": 84.8, "pct_dentro_sla": 62.1}, {"mes_referencia": "2025-02", "categoria": "Incidente novo", "qtd_chamados": 36, "horas_trabalhadas": 215.9, "mttr_horas": 52.9, "pct_dentro_sla": 69.4}, {"mes_referencia": "2025-02", "categoria": "Incidente recorrente", "qtd_chamados": 81, "horas_trabalhadas": 301.0, "mttr_horas": 53.8, "pct_dentro_sla": 67.9}, {"mes_referencia": "2025-03", "categoria": "Incidente novo", "qtd_chamados": 42, "horas_trabalhadas": 253.0, "mttr_horas": 47.3, "pct_dentro_sla": 64.3}, {"mes_referencia": "2025-03", "categoria": "Melhoria", "qtd_chamados": 24, "horas_trabalhadas": 169.4, "mttr_horas": 107.3, "pct_dentro_sla": 66.7}, {"mes_referencia": "2025-03", "categoria": "Extração / relatório manual", "qtd_chamados": 187, "horas_trabalhadas": 557.4, "mttr_horas": 84.4, "pct_dentro_sla": 66.8}, {"mes_referencia": "2025-03", "categoria": "Dúvida sobre dado", "qtd_chamados": 82, "horas_trabalhadas": 104.5, "mttr_horas": 86.8, "pct_dentro_sla": 65.9}, {"mes_referencia": "2025-03", "categoria": "Incidente recorrente", "qtd_chamados": 86, "horas_trabalhadas": 361.3, "mttr_horas": 53.0, "pct_dentro_sla": 57.0}, {"mes_referencia": "2025-04", "categoria": "Incidente novo", "qtd_chamados": 40, "horas_trabalhadas": 281.2, "mttr_horas": 49.9, "pct_dentro_sla": 70.0}, {"mes_referencia": "2025-04", "categoria": "Melhoria", "qtd_chamados": 21, "horas_trabalhadas": 185.8, "mttr_horas": 87.8, "pct_dentro_sla": 81.0}, {"mes_referencia": "2025-04", "categoria": "Extração / relatório manual", "qtd_chamados": 110, "horas_trabalhadas": 356.7, "mttr_horas": 81.4, "pct_dentro_sla": 71.8}, {"mes_referencia": "2025-04", "categoria": "Incidente recorrente", "qtd_chamados": 80, "horas_trabalhadas": 304.6, "mttr_horas": 52.3, "pct_dentro_sla": 62.5}, {"mes_referencia": "2025-04", "categoria": "Dúvida sobre dado", "qtd_chamados": 80, "horas_trabalhadas": 100.4, "mttr_horas": 79.5, "pct_dentro_sla": 73.8}, {"mes_referencia": "2025-05", "categoria": "Incidente recorrente", "qtd_chamados": 74, "horas_trabalhadas": 310.9, "mttr_horas": 49.8, "pct_dentro_sla": 74.3}, {"mes_referencia": "2025-05", "categoria": "Dúvida sobre dado", "qtd_chamados": 48, "horas_trabalhadas": 59.1, "mttr_horas": 79.9, "pct_dentro_sla": 77.1}, {"mes_referencia": "2025-05", "categoria": "Extração / relatório manual", "qtd_chamados": 79, "horas_trabalhadas": 255.4, "mttr_horas": 63.4, "pct_dentro_sla": 75.9}, {"mes_referencia": "2025-05", "categoria": "Incidente novo", "qtd_chamados": 43, "horas_trabalhadas": 297.3, "mttr_horas": 59.1, "pct_dentro_sla": 67.4}, {"mes_referencia": "2025-05", "categoria": "Melhoria", "qtd_chamados": 19, "horas_trabalhadas": 116.6, "mttr_horas": 76.7, "pct_dentro_sla": 73.7}, {"mes_referencia": "2025-06", "categoria": "Incidente novo", "qtd_chamados": 42, "horas_trabalhadas": 250.1, "mttr_horas": 47.7, "pct_dentro_sla": 66.7}, {"mes_referencia": "2025-06", "categoria": "Melhoria", "qtd_chamados": 13, "horas_trabalhadas": 98.6, "mttr_horas": 72.7, "pct_dentro_sla": 76.9}, {"mes_referencia": "2025-06", "categoria": "Extração / relatório manual", "qtd_chamados": 30, "horas_trabalhadas": 93.8, "mttr_horas": 49.2, "pct_dentro_sla": 90.0}, {"mes_referencia": "2025-06", "categoria": "Dúvida sobre dado", "qtd_chamados": 33, "horas_trabalhadas": 46.9, "mttr_horas": 93.7, "pct_dentro_sla": 69.7}, {"mes_referencia": "2025-06", "categoria": "Incidente recorrente", "qtd_chamados": 66, "horas_trabalhadas": 291.3, "mttr_horas": 35.1, "pct_dentro_sla": 74.2}, {"mes_referencia": "2025-07", "categoria": "Incidente novo", "qtd_chamados": 35, "horas_trabalhadas": 185.3, "mttr_horas": 31.9, "pct_dentro_sla": 85.7}, {"mes_referencia": "2025-07", "categoria": "Extração / relatório manual", "qtd_chamados": 27, "horas_trabalhadas": 96.8, "mttr_horas": 75.5, "pct_dentro_sla": 81.5}, {"mes_referencia": "2025-07", "categoria": "Dúvida sobre dado", "qtd_chamados": 30, "horas_trabalhadas": 42.4, "mttr_horas": 80.7, "pct_dentro_sla": 73.3}, {"mes_referencia": "2025-07", "categoria": "Melhoria", "qtd_chamados": 15, "horas_trabalhadas": 155.4, "mttr_horas": 79.3, "pct_dentro_sla": 73.3}, {"mes_referencia": "2025-07", "categoria": "Incidente recorrente", "qtd_chamados": 54, "horas_trabalhadas": 232.6, "mttr_horas": 41.7, "pct_dentro_sla": 70.4}, {"mes_referencia": "2025-08", "categoria": "Incidente recorrente", "qtd_chamados": 27, "horas_trabalhadas": 115.2, "mttr_horas": 29.4, "pct_dentro_sla": 77.8}, {"mes_referencia": "2025-08", "categoria": "Extração / relatório manual", "qtd_chamados": 12, "horas_trabalhadas": 45.6, "mttr_horas": 58.4, "pct_dentro_sla": 83.3}, {"mes_referencia": "2025-08", "categoria": "Melhoria", "qtd_chamados": 15, "horas_trabalhadas": 104.8, "mttr_horas": 63.9, "pct_dentro_sla": 73.3}, {"mes_referencia": "2025-08", "categoria": "Incidente novo", "qtd_chamados": 35, "horas_trabalhadas": 231.5, "mttr_horas": 25.4, "pct_dentro_sla": 94.3}, {"mes_referencia": "2025-08", "categoria": "Dúvida sobre dado", "qtd_chamados": 25, "horas_trabalhadas": 36.9, "mttr_horas": 61.8, "pct_dentro_sla": 88.0}, {"mes_referencia": "2025-09", "categoria": "Incidente recorrente", "qtd_chamados": 18, "horas_trabalhadas": 71.7, "mttr_horas": 40.7, "pct_dentro_sla": 77.8}, {"mes_referencia": "2025-09", "categoria": "Extração / relatório manual", "qtd_chamados": 12, "horas_trabalhadas": 41.0, "mttr_horas": 42.7, "pct_dentro_sla": 100.0}, {"mes_referencia": "2025-09", "categoria": "Melhoria", "qtd_chamados": 7, "horas_trabalhadas": 37.5, "mttr_horas": 102.4, "pct_dentro_sla": 71.4}, {"mes_referencia": "2025-09", "categoria": "Incidente novo", "qtd_chamados": 24, "horas_trabalhadas": 142.8, "mttr_horas": 21.7, "pct_dentro_sla": 87.5}, {"mes_referencia": "2025-09", "categoria": "Dúvida sobre dado", "qtd_chamados": 19, "horas_trabalhadas": 20.6, "mttr_horas": 47.4, "pct_dentro_sla": 94.7}, {"mes_referencia": "2025-10", "categoria": "Dúvida sobre dado", "qtd_chamados": 19, "horas_trabalhadas": 28.9, "mttr_horas": 48.0, "pct_dentro_sla": 94.7}, {"mes_referencia": "2025-10", "categoria": "Incidente recorrente", "qtd_chamados": 11, "horas_trabalhadas": 41.0, "mttr_horas": 32.3, "pct_dentro_sla": 90.9}, {"mes_referencia": "2025-10", "categoria": "Extração / relatório manual", "qtd_chamados": 3, "horas_trabalhadas": 8.0, "mttr_horas": 91.0, "pct_dentro_sla": 33.3}, {"mes_referencia": "2025-10", "categoria": "Melhoria", "qtd_chamados": 12, "horas_trabalhadas": 84.0, "mttr_horas": 50.9, "pct_dentro_sla": 91.7}, {"mes_referencia": "2025-10", "categoria": "Incidente novo", "qtd_chamados": 29, "horas_trabalhadas": 153.6, "mttr_horas": 26.1, "pct_dentro_sla": 86.2}, {"mes_referencia": "2025-11", "categoria": "Dúvida sobre dado", "qtd_chamados": 18, "horas_trabalhadas": 26.8, "mttr_horas": 52.2, "pct_dentro_sla": 88.9}, {"mes_referencia": "2025-11", "categoria": "Incidente recorrente", "qtd_chamados": 12, "horas_trabalhadas": 53.4, "mttr_horas": 20.6, "pct_dentro_sla": 100.0}, {"mes_referencia": "2025-11", "categoria": "Melhoria", "qtd_chamados": 11, "horas_trabalhadas": 82.1, "mttr_horas": 58.5, "pct_dentro_sla": 90.9}, {"mes_referencia": "2025-11", "categoria": "Extração / relatório manual", "qtd_chamados": 6, "horas_trabalhadas": 23.9, "mttr_horas": 95.9, "pct_dentro_sla": 33.3}, {"mes_referencia": "2025-11", "categoria": "Incidente novo", "qtd_chamados": 31, "horas_trabalhadas": 209.4, "mttr_horas": 29.4, "pct_dentro_sla": 83.9}, {"mes_referencia": "2025-12", "categoria": "Extração / relatório manual", "qtd_chamados": 6, "horas_trabalhadas": 15.3, "mttr_horas": 46.2, "pct_dentro_sla": 100.0}, {"mes_referencia": "2025-12", "categoria": "Incidente novo", "qtd_chamados": 27, "horas_trabalhadas": 165.2, "mttr_horas": 20.0, "pct_dentro_sla": 84.6}, {"mes_referencia": "2025-12", "categoria": "Dúvida sobre dado", "qtd_chamados": 9, "horas_trabalhadas": 6.3, "mttr_horas": 50.2, "pct_dentro_sla": 100.0}, {"mes_referencia": "2025-12", "categoria": "Incidente recorrente", "qtd_chamados": 12, "horas_trabalhadas": 51.3, "mttr_horas": 20.6, "pct_dentro_sla": 83.3}, {"mes_referencia": "2025-12", "categoria": "Melhoria", "qtd_chamados": 12, "horas_trabalhadas": 93.3, "mttr_horas": 45.8, "pct_dentro_sla": 100.0}], "kpis_antes_depois": [{"periodo": "Antes (Q1/2025)", "chamados_mes": 409.0, "horas_mes": 1367.0, "mttr_horas": 75.7, "pct_dentro_sla": 66.4, "pct_resolvivel_por_dashboard": 64.7}, {"periodo": "Depois (Q4/2025)", "chamados_mes": 73.0, "horas_mes": 348.0, "mttr_horas": 38.0, "pct_dentro_sla": 87.4, "pct_resolvivel_por_dashboard": 28.0}], "pareto_recorrentes": [{"sistema": "Marketplace", "squad": "Squad Shopping", "qtd_antes": 89.0, "qtd_depois": 15.0, "pct_acumulado": 34.1}, {"sistema": "Programa de Fidelidade", "squad": "Squad Fidelidade", "qtd_antes": 60.0, "qtd_depois": 8.0, "pct_acumulado": 57.1}, {"sistema": "Pagamentos PIX", "squad": "Squad Pagamentos", "qtd_antes": 49.0, "qtd_depois": 5.0, "pct_acumulado": 75.9}, {"sistema": "Crédito Pessoal", "squad": "Squad Crédito", "qtd_antes": 19.0, "qtd_depois": 2.0, "pct_acumulado": 83.1}, {"sistema": "App Mobile", "squad": "Squad App", "qtd_antes": 16.0, "qtd_depois": 0.0, "pct_acumulado": 89.3}, {"sistema": "Portal de Relatórios", "squad": "Squad Dados", "qtd_antes": 15.0, "qtd_depois": 1.0, "pct_acumulado": 95.0}, {"sistema": "Cartões", "squad": "Squad Cartões", "qtd_antes": 12.0, "qtd_depois": 1.0, "pct_acumulado": 99.6}, {"sistema": "Não informado", "squad": "Não informado", "qtd_antes": 1.0, "qtd_depois": 3.0, "pct_acumulado": 100.0}], "alertas_mensal": [{"mes_referencia": "2025-07", "alertas": 56, "viraram_chamado": 24.0, "evitados": 32.0, "pct_evitados": 57.1, "minutos_medios_tratativa": 22.0}, {"mes_referencia": "2025-08", "alertas": 54, "viraram_chamado": 13.0, "evitados": 41.0, "pct_evitados": 75.9, "minutos_medios_tratativa": 24.0}, {"mes_referencia": "2025-09", "alertas": 49, "viraram_chamado": 11.0, "evitados": 38.0, "pct_evitados": 77.6, "minutos_medios_tratativa": 24.0}, {"mes_referencia": "2025-10", "alertas": 56, "viraram_chamado": 7.0, "evitados": 49.0, "pct_evitados": 87.5, "minutos_medios_tratativa": 25.0}, {"mes_referencia": "2025-11", "alertas": 45, "viraram_chamado": 10.0, "evitados": 35.0, "pct_evitados": 77.8, "minutos_medios_tratativa": 29.0}, {"mes_referencia": "2025-12", "alertas": 49, "viraram_chamado": 5.0, "evitados": 44.0, "pct_evitados": 89.8, "minutos_medios_tratativa": 22.0}]};
+
+// ---------- utilidades ----------
+const NS = "http://www.w3.org/2000/svg";
+const fmt = (n, d = 0) => Number(n).toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d });
+const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const nomeMes = ym => MESES[+ym.slice(5, 7) - 1];
+function el(tag, attrs = {}, pai) {           // cria elemento SVG
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (pai) pai.appendChild(e);
+  return e;
+}
+function texto(pai, x, y, conteudo, cls, anchor = "start") {
+  const t = el("text", { x, y, class: cls, "text-anchor": anchor }, pai); t.textContent = conteudo; return t;
+}
+// tooltip simples, reaproveitado por todos os gráficos
+const tip = document.getElementById("tip");
+function hover(alvo, html) {
+  alvo.addEventListener("mousemove", ev => {
+    tip.innerHTML = html; tip.style.opacity = 1;
+    tip.style.left = Math.min(ev.clientX + 14, innerWidth - 270) + "px"; tip.style.top = (ev.clientY + 14) + "px";
+  });
+  alvo.addEventListener("mouseleave", () => tip.style.opacity = 0);
+}
+// barra com cantos arredondados só no topo (ou na ponta direita, se horizontal)
+function barra(pai, x, y, w, h, cor, horizontal = false) {
+  const r = Math.min(4, horizontal ? h / 2 : w / 2, horizontal ? w : h);
+  const d = horizontal
+    ? `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`
+    : `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`;
+  return el("path", { d, fill: cor }, pai);
+}
+
+// ---------- 1) KPIs antes x depois ----------
+(function kpis() {
+  const k = Object.fromEntries(D.kpis_antes_depois.map(r => [r.periodo.startsWith("Antes") ? "a" : "d", r]));
+  const pct = (a, d) => Math.round(100 * (d - a) / a);
+  const horasLib = k.a.horas_mes - k.d.horas_mes;
+  const cards = [
+    { hero: true, rotulo: "Chamados de sustentação / mês", valor: fmt(k.d.chamados_mes),
+      antes: `era ${fmt(k.a.chamados_mes)} no Q1`, delta: `${pct(k.a.chamados_mes, k.d.chamados_mes)}%` },
+    { rotulo: "Horas de sustentação / mês", valor: fmt(k.d.horas_mes) + " h",
+      antes: `era ${fmt(k.a.horas_mes)} h`, delta: `${fmt(horasLib)} h liberadas (~${fmt(horasLib / 160)} pessoas)` },
+    { rotulo: "Tempo médio de resolução (MTTR)", valor: fmt(k.d.mttr_horas, 1) + " h",
+      antes: `era ${fmt(k.a.mttr_horas, 1)} h`, delta: `${pct(k.a.mttr_horas, k.d.mttr_horas)}%` },
+    { rotulo: "Chamados dentro do SLA", valor: fmt(k.d.pct_dentro_sla, 1) + "%",
+      antes: `era ${fmt(k.a.pct_dentro_sla, 1)}%`, delta: `+${fmt(k.d.pct_dentro_sla - k.a.pct_dentro_sla, 1)} p.p.` },
+  ];
+  document.getElementById("kpis").innerHTML = cards.map(c => `
+    <div class="card kpi ${c.hero ? "hero" : ""}">
+      <div class="rotulo">${c.rotulo}</div>
+      <div class="valor">${c.valor}</div>
+      <div class="antes">${c.antes} · <span class="delta">${c.delta}</span></div>
+    </div>`).join("");
+})();
+
+// ---------- 2) Barras empilhadas por mês ----------
+(function mensal() {
+  const CATS = [  // ordem fixa = cor fixa (a cor segue a categoria, nunca o ranking)
+    ["Extração / relatório manual", "var(--c1)"], ["Dúvida sobre dado", "var(--c2)"],
+    ["Incidente recorrente", "var(--c3)"], ["Incidente novo", "var(--c4)"], ["Melhoria", "var(--c5)"]];
+  document.getElementById("leg-mensal").innerHTML =
+    CATS.map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join("");
+
+  const meses = [...new Set(D.chamados_mensal.map(r => r.mes_referencia))].sort();
+  const val = (m, c) => (D.chamados_mensal.find(r => r.mes_referencia === m && r.categoria === c) || {}).qtd_chamados || 0;
+  const totais = meses.map(m => CATS.reduce((s, [c]) => s + val(m, c), 0));
+
+  const svg = document.getElementById("g-mensal");
+  const M = { l: 40, r: 10, t: 52, b: 26 }, W = 1100, H = 350;
+  const ih = H - M.t - M.b, passo = (W - M.l - M.r) / meses.length, bw = passo * 0.62;
+  const max = Math.ceil(Math.max(...totais) / 100) * 100, y = v => M.t + ih - (v / max) * ih;
+
+  for (let v = 0; v <= max; v += 100) {           // grade recessiva
+    el("line", { x1: M.l, x2: W - M.r, y1: y(v), y2: y(v), stroke: "var(--grid)" }, svg);
+    texto(svg, M.l - 8, y(v) + 4, fmt(v), "eixo", "end");
+  }
+  // marcos do projeto (linhas verticais tracejadas)
+  const marcos = { "2025-04": "Fase 1 · dashboards self-service", "2025-06": "Fase 2 · causa raiz (Pareto)",
+                   "2025-07": "Fase 3 · alertas proativos" };
+  let nivel = 0;  // escalona os rótulos para não encavalar
+  meses.forEach((m, i) => {
+    if (!marcos[m]) return;
+    const x = M.l + passo * i + 1;
+    const yl = M.t - 38 + nivel * 16; nivel++;
+    el("line", { x1: x, x2: x, y1: yl - 10, y2: M.t + ih, stroke: "var(--text-3)", "stroke-dasharray": "3 4" }, svg);
+    texto(svg, x + 5, yl, marcos[m], "rot");
+  });
+
+  meses.forEach((m, i) => {
+    const x = M.l + passo * i + (passo - bw) / 2;
+    let base = 0;
+    CATS.forEach(([c, cor], j) => {
+      const v = val(m, c); if (!v) return;
+      const topo = j === CATS.length - 1 || CATS.slice(j + 1).every(([c2]) => !val(m, c2));
+      const y0 = y(base + v), h = y(base) - y(base + v) - 2;   // 2px de respiro entre segmentos
+      const seg = topo ? barra(svg, x, y0, bw, Math.max(h, 1), cor) : el("rect", { x, y: y0, width: bw, height: Math.max(h, 1), fill: cor }, svg);
+      hover(seg, `<b>${nomeMes(m)}/25 · ${c}</b>${fmt(v)} chamados<br>Total do mês: ${fmt(totais[i])}`);
+      base += v;
+    });
+    texto(svg, x + bw / 2, y(totais[i]) - 6, fmt(totais[i]), i === 0 || i === meses.length - 1 ? "forte" : "rot", "middle");
+    texto(svg, x + bw / 2, H - 6, nomeMes(m), "eixo", "middle");
+  });
+})();
+
+// ---------- 3) Pareto por sistema (barras horizontais pareadas) ----------
+(function pareto() {
+  const dados = D.pareto_recorrentes.filter(r => r.sistema !== "Não informado").sort((a, b) => b.qtd_antes - a.qtd_antes);
+  document.getElementById("nota-pareto").textContent =
+    `3 sistemas concentravam ${fmt(dados[2].pct_acumulado, 0)}% da recorrência → priorizados para correção de causa raiz.`;
+  const svg = document.getElementById("g-pareto");
+  const M = { l: 150, r: 110, t: 4 }, W = 640, linha = 41, bh = 13;
+  const max = Math.max(...dados.map(r => r.qtd_antes)), x = v => M.l + (v / max) * (W - M.l - M.r);
+  dados.forEach((r, i) => {
+    const y0 = M.t + i * linha;
+    texto(svg, M.l - 10, y0 + bh + 5, r.sistema, "rot", "end");
+    const a = barra(svg, M.l, y0 + 2, Math.max(x(r.qtd_antes) - M.l, 1), bh, "var(--antes)", true);
+    const d = barra(svg, M.l, y0 + bh + 4, Math.max(x(r.qtd_depois) - M.l, 1), bh, "var(--c1)", true);
+    const html = `<b>${r.sistema}</b>${r.squad}<br>Q1: ${fmt(r.qtd_antes)} · Q4: ${fmt(r.qtd_depois)}<br>% acumulado (Q1): ${fmt(r.pct_acumulado, 1)}%`;
+    hover(a, html); hover(d, html);
+    texto(svg, x(r.qtd_antes) + 6, y0 + bh, fmt(r.qtd_antes), "rot");
+    texto(svg, x(r.qtd_depois) + 6, y0 + 2 * bh + 3, fmt(r.qtd_depois), "rot");
+    if (i < 3) texto(svg, W - 2, y0 + bh + 5, `${fmt(r.pct_acumulado, 0)}% acum.`, "eixo", "end");
+  });
+})();
+
+// ---------- 4) % de alertas evitados (linha) ----------
+(function alertas() {
+  const dados = D.alertas_mensal;
+  const svg = document.getElementById("g-alertas");
+  const M = { l: 40, r: 20, t: 26, b: 26 }, W = 420, H = 300, ih = H - M.t - M.b;
+  const x = i => M.l + i * (W - M.l - M.r) / (dados.length - 1), y = v => M.t + ih - (v / 100) * ih;
+  [0, 25, 50, 75, 100].forEach(v => {
+    el("line", { x1: M.l, x2: W - M.r, y1: y(v), y2: y(v), stroke: "var(--grid)" }, svg);
+    texto(svg, M.l - 8, y(v) + 4, v + "%", "eixo", "end");
+  });
+  el("polyline", { points: dados.map((r, i) => `${x(i)},${y(r.pct_evitados)}`).join(" "),
+                   fill: "none", stroke: "var(--c1)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+  dados.forEach((r, i) => {
+    el("circle", { cx: x(i), cy: y(r.pct_evitados), r: 4.5, fill: "var(--c1)", stroke: "var(--card)", "stroke-width": 2 }, svg);
+    const alvo = el("rect", { x: x(i) - 24, y: M.t, width: 48, height: ih, fill: "transparent" }, svg);  // área de hover generosa
+    hover(alvo, `<b>${nomeMes(r.mes_referencia)}/25</b>${fmt(r.alertas)} alertas · ${fmt(r.evitados)} evitados<br>${fmt(r.pct_evitados, 1)}% resolvidos antes de virar chamado`);
+    texto(svg, x(i), H - 6, nomeMes(r.mes_referencia), "eixo", "middle");
+    if (i === 0 || i === dados.length - 1)
+      texto(svg, x(i), y(r.pct_evitados) - 12, fmt(r.pct_evitados, 0) + "%", "forte", "middle");
+  });
+})();
+</script>
+</body>
+</html>

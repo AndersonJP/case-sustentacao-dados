@@ -1,0 +1,61 @@
+mes_referencia,categoria,qtd_chamados,horas_trabalhadas,mttr_horas,pct_dentro_sla
+2025-01-01,Extração / relatório manual,192,547.3,89.7,68.2
+2025-01-01,Incidente novo,38,210.0,46.4,65.8
+2025-01-01,Melhoria,19,134.5,62.7,84.2
+2025-02-01,Dúvida sobre dado,60,77.6,89.3,68.3
+2025-02-01,Incidente recorrente,81,301.0,53.8,67.9
+2025-03-01,Dúvida sobre dado,82,104.5,86.8,65.9
+2025-03-01,Incidente recorrente,86,361.3,53.0,57.0
+2025-04-01,Dúvida sobre dado,80,100.4,79.5,73.8
+2025-04-01,Incidente recorrente,80,304.6,52.3,62.5
+2025-05-01,Extração / relatório manual,79,255.4,63.4,75.9
+2025-05-01,Incidente novo,43,297.3,59.1,67.4
+2025-05-01,Melhoria,19,116.6,76.7,73.7
+2025-06-01,Dúvida sobre dado,33,46.9,93.7,69.7
+2025-06-01,Incidente recorrente,66,291.3,35.1,74.2
+2025-07-01,Dúvida sobre dado,30,42.4,80.7,73.3
+2025-07-01,Incidente recorrente,54,232.6,41.7,70.4
+2025-08-01,Extração / relatório manual,12,45.6,58.4,83.3
+2025-08-01,Incidente novo,35,231.5,25.4,94.3
+2025-08-01,Melhoria,15,104.8,63.9,73.3
+2025-09-01,Incidente recorrente,18,71.7,40.7,77.8
+2025-11-01,Dúvida sobre dado,18,26.8,52.2,88.9
+2025-11-01,Incidente recorrente,12,53.4,20.6,100.0
+2025-12-01,Incidente recorrente,12,51.3,20.6,83.3
+2025-10-01,Extração / relatório manual,3,8.0,91.0,33.3
+2025-10-01,Incidente novo,29,153.6,26.1,86.2
+2025-09-01,Dúvida sobre dado,19,20.6,47.4,94.7
+2025-10-01,Melhoria,12,84.0,50.9,91.7
+2025-12-01,Dúvida sobre dado,9,6.3,50.2,100.0
+2025-01-01,Dúvida sobre dado,105,123.8,89.3,72.4
+2025-01-01,Incidente recorrente,94,384.0,46.4,67.0
+2025-02-01,Extração / relatório manual,169,514.3,84.8,62.1
+2025-02-01,Incidente novo,36,215.9,52.9,69.4
+2025-02-01,Melhoria,13,147.0,83.3,61.5
+2025-03-01,Extração / relatório manual,187,557.4,84.4,66.8
+2025-03-01,Incidente novo,42,253.0,47.3,64.3
+2025-03-01,Melhoria,24,169.4,107.3,66.7
+2025-04-01,Extração / relatório manual,110,356.7,81.4,71.8
+2025-04-01,Melhoria,21,185.8,87.8,81.0
+2025-05-01,Dúvida sobre dado,48,59.1,79.9,77.1
+2025-05-01,Incidente recorrente,74,310.9,49.8,74.3
+2025-06-01,Extração / relatório manual,30,93.8,49.2,90.0
+2025-06-01,Incidente novo,42,250.1,47.7,66.7
+2025-06-01,Melhoria,13,98.6,72.7,76.9
+2025-07-01,Extração / relatório manual,27,96.8,75.5,81.5
+2025-07-01,Incidente novo,35,185.3,31.9,85.7
+2025-07-01,Melhoria,15,155.4,79.3,73.3
+2025-08-01,Dúvida sobre dado,25,36.9,61.8,88.0
+2025-08-01,Incidente recorrente,27,115.2,29.4,77.8
+2025-09-01,Extração / relatório manual,12,41.0,42.7,100.0
+2025-10-01,Dúvida sobre dado,19,28.9,48.0,94.7
+2025-11-01,Melhoria,11,82.1,58.5,90.9
+2025-12-01,Extração / relatório manual,6,15.3,46.2,100.0
+2025-12-01,Incidente novo,27,165.2,20.0,84.6
+2025-04-01,Incidente novo,40,281.2,49.9,70.0
+2025-09-01,Incidente novo,24,142.8,21.7,87.5
+2025-10-01,Incidente recorrente,11,41.0,32.3,90.9
+2025-11-01,Extração / relatório manual,6,23.9,95.9,33.3
+2025-11-01,Incidente novo,31,209.4,29.4,83.9
+2025-09-01,Melhoria,7,37.5,102.4,71.4
+2025-12-01,Melhoria,12,93.3,45.8,100.0

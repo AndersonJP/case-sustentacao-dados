@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--
+  Template do dashboard. NÃO abra este arquivo direto:
+  rode `python src/rodar_local.py`, que injeta os dados da camada gold
+  no marcador abaixo e gera dashboard/index.html (1 arquivo, funciona offline).
+  Sem bibliotecas externas: só HTML + SVG + JavaScript puro.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Sustentação · Antes e depois dos dashboards</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --card: #ffffff; --border: #e6e5e0;
+    --text-1: #0b0b0b; --text-2: #52514e; --text-3: #8a8984; --grid: #ecebe6;
+    --good: #0f7b3a;
+    /* paleta categórica (ordem fixa, validada para daltonismo) */
+    --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #eda100; --c5: #e87ba4;
+    --antes: #b4b2a9;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--text-1);
+         font: 14px/1.45 Inter, "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px 24px 40px; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -.01em; }
+  .sub { color: var(--text-2); margin: 0; }
+  .tag { font-size: 12px; color: var(--text-3); border: 1px solid var(--border); border-radius: 99px; padding: 3px 10px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 22px 0 16px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .kpi .rotulo { color: var(--text-2); font-size: 13px; }
+  .kpi .valor { font-size: 30px; font-weight: 650; letter-spacing: -.02em; margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+  .kpi .antes { color: var(--text-3); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .kpi .delta { color: var(--good); font-weight: 600; }
+  .kpi.hero { border-color: #b9d4f3; background: #f5f9fe; }
+  .grid2 { display: grid; grid-template-columns: 1.6fr 1fr; gap: 12px; margin-top: 12px; }
+  h2 { font-size: 15px; margin: 0 0 2px; }
+  .nota { color: var(--text-2); font-size: 13px; margin: 0 0 10px; }
+  .legenda { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--text-2); margin: 6px 0 4px; }
+  .legenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .legenda i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  svg { width: 100%; height: auto; display: block; overflow: visible; }
+  svg text { font-family: inherit; }
+  .eixo { fill: var(--text-3); font-size: 11px; }
+  .rot { fill: var(--text-2); font-size: 11.5px; }
+  .forte { fill: var(--text-1); font-size: 12px; font-weight: 600; }
+  #tip { position: fixed; pointer-events: none; background: #1d1d1b; color: #fff; font-size: 12.5px;
+         padding: 8px 10px; border-radius: 8px; opacity: 0; transition: opacity .1s; max-width: 260px; z-index: 9; }
+  #tip b { display: block; margin-bottom: 2px; }
+  footer { color: var(--text-3); font-size: 12px; margin-top: 18px; }
+  @media (max-width: 860px) { .kpis { grid-template-columns: repeat(2, 1fr); } .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Painel de Sustentação · Produtos digitais (banco)</h1>
+      <p class="sub">Efeito da implantação de dashboards e métricas sobre a demanda de sustentação — 2025</p>
+    </div>
+    <span class="tag">Dados fictícios · fonte: camada gold (Jira + Alertas + Cadastro de sistemas)</span>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>Chamados abertos por mês, por categoria</h2>
+    <p class="nota">Extração de dados e dúvidas eram ~65% do volume. Viraram self-service no dashboard.</p>
+    <div class="legenda" id="leg-mensal"></div>
+    <svg id="g-mensal" viewBox="0 0 1100 350" role="img" aria-label="Barras empilhadas de chamados por mês e categoria"></svg>
+  </section>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>Incidentes recorrentes por sistema (Pareto)</h2>
+      <p class="nota" id="nota-pareto"></p>
+      <div class="legenda">
+        <span><i style="background:var(--antes)"></i>Q1/2025 (antes)</span>
+        <span><i style="background:var(--c1)"></i>Q4/2025 (depois)</span>
+      </div>
+      <svg id="g-pareto" viewBox="0 0 640 300" role="img" aria-label="Recorrentes por sistema antes e depois"></svg>
+    </section>
+    <section class="card">
+      <h2>Alertas resolvidos antes de virar chamado</h2>
+      <p class="nota">Monitoramento proativo a partir de jul/2025.</p>
+      <svg id="g-alertas" viewBox="0 0 420 300" role="img" aria-label="Percentual de alertas evitados por mês"></svg>
+    </section>
+  </div>
+
+  <footer>Gerado por <code>src/rodar_local.py</code>. Mesmas tabelas gold alimentam Power BI, QuickSight ou Tableau via Databricks SQL Warehouse.</footer>
+</main>
+<div id="tip"></div>
+
+<script>
+// Dados injetados pelo pipeline (camada gold). O marcador abaixo é substituído pelo JSON.
+const D = /*__DADOS_GOLD__*/{};
+
+// ---------- utilidades ----------
+const NS = "http://www.w3.org/2000/svg";
+const fmt = (n, d = 0) => Number(n).toLocaleString("pt-BR", { minimumFractionDigits: d, maximumFractionDigits: d });
+const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const nomeMes = ym => MESES[+ym.slice(5, 7) - 1];
+function el(tag, attrs = {}, pai) {           // cria elemento SVG
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (pai) pai.appendChild(e);
+  return e;
+}
+function texto(pai, x, y, conteudo, cls, anchor = "start") {
+  const t = el("text", { x, y, class: cls, "text-anchor": anchor }, pai); t.textContent = conteudo; return t;
+}
+// tooltip simples, reaproveitado por todos os gráficos
+const tip = document.getElementById("tip");
+function hover(alvo, html) {
+  alvo.addEventListener("mousemove", ev => {
+    tip.innerHTML = html; tip.style.opacity = 1;
+    tip.style.left = Math.min(ev.clientX + 14, innerWidth - 270) + "px"; tip.style.top = (ev.clientY + 14) + "px";
+  });
+  alvo.addEventListener("mouseleave", () => tip.style.opacity = 0);
+}
+// barra com cantos arredondados só no topo (ou na ponta direita, se horizontal)
+function barra(pai, x, y, w, h, cor, horizontal = false) {
+  const r = Math.min(4, horizontal ? h / 2 : w / 2, horizontal ? w : h);
+  const d = horizontal
+    ? `M${x},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h - r} Q${x + w},${y + h} ${x + w - r},${y + h} H${x} Z`
+    : `M${x},${y + h} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${y + h} Z`;
+  return el("path", { d, fill: cor }, pai);
+}
+
+// ---------- 1) KPIs antes x depois ----------
+(function kpis() {
+  const k = Object.fromEntries(D.kpis_antes_depois.map(r => [r.periodo.startsWith("Antes") ? "a" : "d", r]));
+  const pct = (a, d) => Math.round(100 * (d - a) / a);
+  const horasLib = k.a.horas_mes - k.d.horas_mes;
+  const cards = [
+    { hero: true, rotulo: "Chamados de sustentação / mês", valor: fmt(k.d.chamados_mes),
+      antes: `era ${fmt(k.a.chamados_mes)} no Q1`, delta: `${pct(k.a.chamados_mes, k.d.chamados_mes)}%` },
+    { rotulo: "Horas de sustentação / mês", valor: fmt(k.d.horas_mes) + " h",
+      antes: `era ${fmt(k.a.horas_mes)} h`, delta: `${fmt(horasLib)} h liberadas (~${fmt(horasLib / 160)} pessoas)` },
+    { rotulo: "Tempo médio de resolução (MTTR)", valor: fmt(k.d.mttr_horas, 1) + " h",
+      antes: `era ${fmt(k.a.mttr_horas, 1)} h`, delta: `${pct(k.a.mttr_horas, k.d.mttr_horas)}%` },
+    { rotulo: "Chamados dentro do SLA", valor: fmt(k.d.pct_dentro_sla, 1) + "%",
+      antes: `era ${fmt(k.a.pct_dentro_sla, 1)}%`, delta: `+${fmt(k.d.pct_dentro_sla - k.a.pct_dentro_sla, 1)} p.p.` },
+  ];
+  document.getElementById("kpis").innerHTML = cards.map(c => `
+    <div class="card kpi ${c.hero ? "hero" : ""}">
+      <div class="rotulo">${c.rotulo}</div>
+      <div class="valor">${c.valor}</div>
+      <div class="antes">${c.antes} · <span class="delta">${c.delta}</span></div>
+    </div>`).join("");
+})();
+
+// ---------- 2) Barras empilhadas por mês ----------
+(function mensal() {
+  const CATS = [  // ordem fixa = cor fixa (a cor segue a categoria, nunca o ranking)
+    ["Extração / relatório manual", "var(--c1)"], ["Dúvida sobre dado", "var(--c2)"],
+    ["Incidente recorrente", "var(--c3)"], ["Incidente novo", "var(--c4)"], ["Melhoria", "var(--c5)"]];
+  document.getElementById("leg-mensal").innerHTML =
+    CATS.map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join("");
+
+  const meses = [...new Set(D.chamados_mensal.map(r => r.mes_referencia))].sort();
+  const val = (m, c) => (D.chamados_mensal.find(r => r.mes_referencia === m && r.categoria === c) || {}).qtd_chamados || 0;
+  const totais = meses.map(m => CATS.reduce((s, [c]) => s + val(m, c), 0));
+
+  const svg = document.getElementById("g-mensal");
+  const M = { l: 40, r: 10, t: 52, b: 26 }, W = 1100, H = 350;
+  const ih = H - M.t - M.b, passo = (W - M.l - M.r) / meses.length, bw = passo * 0.62;
+  const max = Math.ceil(Math.max(...totais) / 100) * 100, y = v => M.t + ih - (v / max) * ih;
+
+  for (let v = 0; v <= max; v += 100) {           // grade recessiva
+    el("line", { x1: M.l, x2: W - M.r, y1: y(v), y2: y(v), stroke: "var(--grid)" }, svg);
+    texto(svg, M.l - 8, y(v) + 4, fmt(v), "eixo", "end");
+  }
+  // marcos do projeto (linhas verticais tracejadas)
+  const marcos = { "2025-04": "Fase 1 · dashboards self-service", "2025-06": "Fase 2 · causa raiz (Pareto)",
+                   "2025-07": "Fase 3 · alertas proativos" };
+  let nivel = 0;  // escalona os rótulos para não encavalar
+  meses.forEach((m, i) => {
+    if (!marcos[m]) return;
+    const x = M.l + passo * i + 1;
+    const yl = M.t - 38 + nivel * 16; nivel++;
+    el("line", { x1: x, x2: x, y1: yl - 10, y2: M.t + ih, stroke: "var(--text-3)", "stroke-dasharray": "3 4" }, svg);
+    texto(svg, x + 5, yl, marcos[m], "rot");
+  });
+
+  meses.forEach((m, i) => {
+    const x = M.l + passo * i + (passo - bw) / 2;
+    let base = 0;
+    CATS.forEach(([c, cor], j) => {
+      const v = val(m, c); if (!v) return;
+      const topo = j === CATS.length - 1 || CATS.slice(j + 1).every(([c2]) => !val(m, c2));
+      const y0 = y(base + v), h = y(base) - y(base + v) - 2;   // 2px de respiro entre segmentos
+      const seg = topo ? barra(svg, x, y0, bw, Math.max(h, 1), cor) : el("rect", { x, y: y0, width: bw, height: Math.max(h, 1), fill: cor }, svg);
+      hover(seg, `<b>${nomeMes(m)}/25 · ${c}</b>${fmt(v)} chamados<br>Total do mês: ${fmt(totais[i])}`);
+      base += v;
+    });
+    texto(svg, x + bw / 2, y(totais[i]) - 6, fmt(totais[i]), i === 0 || i === meses.length - 1 ? "forte" : "rot", "middle");
+    texto(svg, x + bw / 2, H - 6, nomeMes(m), "eixo", "middle");
+  });
+})();
+
+// ---------- 3) Pareto por sistema (barras horizontais pareadas) ----------
+(function pareto() {
+  const dados = D.pareto_recorrentes.filter(r => r.sistema !== "Não informado").sort((a, b) => b.qtd_antes - a.qtd_antes);
+  document.getElementById("nota-pareto").textContent =
+    `3 sistemas concentravam ${fmt(dados[2].pct_acumulado, 0)}% da recorrência → priorizados para correção de causa raiz.`;
+  const svg = document.getElementById("g-pareto");
+  const M = { l: 150, r: 110, t: 4 }, W = 640, linha = 41, bh = 13;
+  const max = Math.max(...dados.map(r => r.qtd_antes)), x = v => M.l + (v / max) * (W - M.l - M.r);
+  dados.forEach((r, i) => {
+    const y0 = M.t + i * linha;
+    texto(svg, M.l - 10, y0 + bh + 5, r.sistema, "rot", "end");
+    const a = barra(svg, M.l, y0 + 2, Math.max(x(r.qtd_antes) - M.l, 1), bh, "var(--antes)", true);
+    const d = barra(svg, M.l, y0 + bh + 4, Math.max(x(r.qtd_depois) - M.l, 1), bh, "var(--c1)", true);
+    const html = `<b>${r.sistema}</b>${r.squad}<br>Q1: ${fmt(r.qtd_antes)} · Q4: ${fmt(r.qtd_depois)}<br>% acumulado (Q1): ${fmt(r.pct_acumulado, 1)}%`;
+    hover(a, html); hover(d, html);
+    texto(svg, x(r.qtd_antes) + 6, y0 + bh, fmt(r.qtd_antes), "rot");
+    texto(svg, x(r.qtd_depois) + 6, y0 + 2 * bh + 3, fmt(r.qtd_depois), "rot");
+    if (i < 3) texto(svg, W - 2, y0 + bh + 5, `${fmt(r.pct_acumulado, 0)}% acum.`, "eixo", "end");
+  });
+})();
+
+// ---------- 4) % de alertas evitados (linha) ----------
+(function alertas() {
+  const dados = D.alertas_mensal;
+  const svg = document.getElementById("g-alertas");
+  const M = { l: 40, r: 20, t: 26, b: 26 }, W = 420, H = 300, ih = H - M.t - M.b;
+  const x = i => M.l + i * (W - M.l - M.r) / (dados.length - 1), y = v => M.t + ih - (v / 100) * ih;
+  [0, 25, 50, 75, 100].forEach(v => {
+    el("line", { x1: M.l, x2: W - M.r, y1: y(v), y2: y(v), stroke: "var(--grid)" }, svg);
+    texto(svg, M.l - 8, y(v) + 4, v + "%", "eixo", "end");
+  });
+  el("polyline", { points: dados.map((r, i) => `${x(i)},${y(r.pct_evitados)}`).join(" "),
+                   fill: "none", stroke: "var(--c1)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+  dados.forEach((r, i) => {
+    el("circle", { cx: x(i), cy: y(r.pct_evitados), r: 4.5, fill: "var(--c1)", stroke: "var(--card)", "stroke-width": 2 }, svg);
+    const alvo = el("rect", { x: x(i) - 24, y: M.t, width: 48, height: ih, fill: "transparent" }, svg);  // área de hover generosa
+    hover(alvo, `<b>${nomeMes(r.mes_referencia)}/25</b>${fmt(r.alertas)} alertas · ${fmt(r.evitados)} evitados<br>${fmt(r.pct_evitados, 1)}% resolvidos antes de virar chamado`);
+    texto(svg, x(i), H - 6, nomeMes(r.mes_referencia), "eixo", "middle");
+    if (i === 0 || i === dados.length - 1)
+      texto(svg, x(i), y(r.pct_evitados) - 12, fmt(r.pct_evitados, 0) + "%", "forte", "middle");
+  });
+})();
+</script>
+</body>
+</html>

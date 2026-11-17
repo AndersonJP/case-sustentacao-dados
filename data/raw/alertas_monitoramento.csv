@@ -1,0 +1,310 @@
+alerta_id,sistema,severidade,disparado_em,minutos_ate_tratativa,issue_key
+ALR-00001,Cartões,critical,2025-07-02 19:11:00,13,SUST-3209
+ALR-00002,App Mobile,critical,2025-07-13 07:44:00,15,SUST-3208
+ALR-00003,Marketplace,warning,2025-07-23 20:03:00,14,SUST-3161
+ALR-00004,Portal de Relatórios,warning,2025-07-17 08:25:00,7,
+ALR-00005,Portal de Relatórios,critical,2025-07-02 21:58:00,16,
+ALR-00006,Crédito Pessoal,warning,2025-07-22 19:13:00,3,
+ALR-00007,Portal de Relatórios,warning,2025-07-19 22:48:00,28,SUST-3131
+ALR-00008,Marketplace,warning,2025-07-15 06:26:00,17,
+ALR-00009,Portal de Relatórios,warning,2025-07-18 23:01:00,26,
+ALR-00010,App Mobile,warning,2025-07-07 15:50:00,9,
+ALR-00011,App Mobile,warning,2025-07-17 18:30:00,25,
+ALR-00012,Cartões,warning,2025-07-04 21:46:00,20,SUST-3183
+ALR-00013,App Mobile,warning,2025-07-15 21:00:00,34,SUST-3208
+ALR-00014,Programa de Fidelidade,warning,2025-07-01 09:26:00,10,SUST-3162
+ALR-00015,Crédito Pessoal,critical,2025-07-17 01:53:00,7,SUST-3210
+ALR-00016,Marketplace,critical,2025-07-10 16:01:00,21,
+ALR-00017,Portal de Relatórios,warning,2025-07-20 16:33:00,3,
+ALR-00018,Crédito Pessoal,warning,2025-07-19 17:13:00,36,SUST-3190
+ALR-00019,Pagamentos PIX,critical,2025-07-22 23:58:00,12,
+ALR-00020,App Mobile,critical,2025-07-22 17:30:00,13,SUST-3140
+ALR-00021,Crédito Pessoal,warning,2025-07-14 03:59:00,5,
+ALR-00022,Programa de Fidelidade,warning,2025-07-01 13:56:00,6,
+ALR-00023,Portal de Relatórios,critical,2025-07-08 06:18:00,9,
+ALR-00024,Portal de Relatórios,warning,2025-07-18 14:21:00,14,
+ALR-00025,App Mobile,warning,2025-07-06 19:02:00,6,SUST-3140
+ALR-00026,Crédito Pessoal,warning,2025-07-25 03:18:00,41,
+ALR-00027,Crédito Pessoal,critical,2025-07-03 15:28:00,66,
+ALR-00028,Programa de Fidelidade,critical,2025-07-13 09:34:00,14,SUST-3132
+ALR-00029,Pagamentos PIX,critical,2025-07-05 12:25:00,14,
+ALR-00030,Programa de Fidelidade,warning,2025-07-02 06:37:00,11,SUST-3164
+ALR-00031,Portal de Relatórios,critical,2025-07-26 02:24:00,35,SUST-3151
+ALR-00032,Programa de Fidelidade,warning,2025-07-13 02:22:00,28,
+ALR-00033,Marketplace,warning,2025-07-14 09:26:00,20,
+ALR-00034,Programa de Fidelidade,critical,2025-07-14 07:41:00,36,
+ALR-00035,Marketplace,warning,2025-07-04 03:04:00,23,
+ALR-00036,Pagamentos PIX,warning,2025-07-17 07:18:00,11,
+ALR-00037,Portal de Relatórios,critical,2025-07-15 07:19:00,6,
+ALR-00038,App Mobile,warning,2025-07-05 21:13:00,17,SUST-3124
+ALR-00039,Crédito Pessoal,warning,2025-07-06 06:31:00,21,SUST-3198
+ALR-00040,Crédito Pessoal,warning,2025-07-17 21:55:00,36,
+ALR-00041,App Mobile,warning,2025-07-11 22:00:00,58,
+ALR-00042,Crédito Pessoal,warning,2025-07-12 15:57:00,16,
+ALR-00043,Crédito Pessoal,critical,2025-07-05 01:40:00,2,SUST-3201
+ALR-00044,Programa de Fidelidade,critical,2025-07-21 00:38:00,26,SUST-3132
+ALR-00045,Portal de Relatórios,warning,2025-07-19 18:41:00,49,
+ALR-00046,Cartões,critical,2025-07-27 08:22:00,36,
+ALR-00047,Cartões,warning,2025-07-17 00:09:00,16,SUST-3212
+ALR-00048,Portal de Relatórios,critical,2025-07-07 08:01:00,37,
+ALR-00049,App Mobile,warning,2025-07-11 04:01:00,31,SUST-3124
+ALR-00050,Cartões,warning,2025-07-15 06:13:00,11,
+ALR-00051,App Mobile,warning,2025-07-23 19:59:00,9,
+ALR-00052,Programa de Fidelidade,warning,2025-07-10 01:31:00,30,SUST-3137
+ALR-00053,Cartões,warning,2025-07-13 16:27:00,52,SUST-3206
+ALR-00054,Crédito Pessoal,warning,2025-07-23 08:16:00,59,SUST-3210
+ALR-00055,Crédito Pessoal,warning,2025-07-01 19:33:00,31,
+ALR-00056,Programa de Fidelidade,warning,2025-07-12 17:04:00,47,SUST-3155
+ALR-00057,Cartões,warning,2025-08-08 17:07:00,59,SUST-3319
+ALR-00058,Cartões,warning,2025-08-15 21:33:00,54,
+ALR-00059,Cartões,warning,2025-08-17 14:43:00,28,SUST-3304
+ALR-00060,Programa de Fidelidade,critical,2025-08-07 11:52:00,46,
+ALR-00061,App Mobile,warning,2025-08-08 08:40:00,3,
+ALR-00062,Cartões,warning,2025-08-22 12:16:00,22,
+ALR-00063,Pagamentos PIX,critical,2025-08-26 14:24:00,28,
+ALR-00064,Programa de Fidelidade,warning,2025-08-01 23:26:00,9,SUST-3314
+ALR-00065,Portal de Relatórios,warning,2025-08-02 06:03:00,13,SUST-3276
+ALR-00066,Marketplace,critical,2025-08-01 07:07:00,14,
+ALR-00067,App Mobile,critical,2025-08-03 04:42:00,7,
+ALR-00068,App Mobile,warning,2025-08-22 19:30:00,31,
+ALR-00069,Portal de Relatórios,critical,2025-08-05 12:22:00,21,
+ALR-00070,Portal de Relatórios,warning,2025-08-26 15:56:00,73,
+ALR-00071,App Mobile,warning,2025-08-18 17:57:00,58,
+ALR-00072,Cartões,warning,2025-08-11 08:37:00,13,
+ALR-00073,Portal de Relatórios,critical,2025-08-07 22:15:00,15,SUST-3305
+ALR-00074,Programa de Fidelidade,critical,2025-08-11 10:41:00,23,
+ALR-00075,Portal de Relatórios,warning,2025-08-26 23:37:00,10,
+ALR-00076,Pagamentos PIX,critical,2025-08-14 15:56:00,31,
+ALR-00077,Marketplace,critical,2025-08-21 11:41:00,13,
+ALR-00078,App Mobile,warning,2025-08-05 14:38:00,30,
+ALR-00079,Pagamentos PIX,critical,2025-08-18 16:17:00,37,
+ALR-00080,Marketplace,warning,2025-08-22 23:59:00,31,SUST-3281
+ALR-00081,App Mobile,critical,2025-08-15 07:58:00,14,SUST-3300
+ALR-00082,Cartões,warning,2025-08-09 14:26:00,8,
+ALR-00083,Crédito Pessoal,critical,2025-08-08 07:38:00,21,
+ALR-00084,Cartões,warning,2025-08-21 03:15:00,8,
+ALR-00085,Pagamentos PIX,warning,2025-08-23 00:53:00,23,
+ALR-00086,Portal de Relatórios,warning,2025-08-14 09:07:00,20,
+ALR-00087,Cartões,warning,2025-08-07 03:15:00,16,
+ALR-00088,Crédito Pessoal,warning,2025-08-05 21:19:00,49,
+ALR-00089,Programa de Fidelidade,critical,2025-08-16 00:07:00,15,
+ALR-00090,App Mobile,warning,2025-08-24 07:08:00,24,SUST-3300
+ALR-00091,Cartões,warning,2025-08-08 17:51:00,23,
+ALR-00092,Pagamentos PIX,warning,2025-08-01 08:29:00,13,SUST-3273
+ALR-00093,Marketplace,warning,2025-08-25 13:55:00,74,
+ALR-00094,App Mobile,warning,2025-08-17 07:00:00,37,
+ALR-00095,Marketplace,warning,2025-08-15 02:45:00,28,
+ALR-00096,Pagamentos PIX,warning,2025-08-06 18:03:00,7,SUST-3279
+ALR-00097,Marketplace,warning,2025-08-27 00:52:00,8,
+ALR-00098,Cartões,warning,2025-08-21 03:30:00,35,
+ALR-00099,Marketplace,warning,2025-08-09 21:38:00,10,
+ALR-00100,App Mobile,critical,2025-08-06 00:03:00,5,SUST-3315
+ALR-00101,Cartões,warning,2025-08-02 08:36:00,45,SUST-3326
+ALR-00102,Crédito Pessoal,warning,2025-08-13 16:19:00,7,
+ALR-00103,Pagamentos PIX,critical,2025-08-14 11:01:00,9,SUST-3325
+ALR-00104,Crédito Pessoal,warning,2025-08-06 18:29:00,9,
+ALR-00105,Cartões,warning,2025-08-03 11:32:00,20,
+ALR-00106,Pagamentos PIX,warning,2025-08-27 17:54:00,18,
+ALR-00107,Portal de Relatórios,warning,2025-08-03 22:13:00,21,
+ALR-00108,Crédito Pessoal,warning,2025-08-17 18:52:00,17,
+ALR-00109,Cartões,warning,2025-08-07 20:07:00,9,
+ALR-00110,App Mobile,warning,2025-08-25 07:18:00,16,
+ALR-00111,Portal de Relatórios,critical,2025-09-13 05:10:00,23,
+ALR-00112,Marketplace,warning,2025-09-13 19:34:00,17,
+ALR-00113,Portal de Relatórios,warning,2025-09-17 10:55:00,35,
+ALR-00114,Marketplace,critical,2025-09-01 13:36:00,47,
+ALR-00115,App Mobile,critical,2025-09-22 23:05:00,15,
+ALR-00116,Crédito Pessoal,warning,2025-09-13 16:51:00,13,
+ALR-00117,Programa de Fidelidade,warning,2025-09-12 00:12:00,32,
+ALR-00118,Portal de Relatórios,warning,2025-09-15 06:30:00,89,SUST-3397
+ALR-00119,Portal de Relatórios,critical,2025-09-11 12:27:00,59,
+ALR-00120,Marketplace,warning,2025-09-05 08:01:00,25,
+ALR-00121,Crédito Pessoal,warning,2025-09-26 21:31:00,12,
+ALR-00122,Crédito Pessoal,critical,2025-09-06 00:46:00,19,
+ALR-00123,App Mobile,warning,2025-09-11 11:34:00,13,
+ALR-00124,Pagamentos PIX,warning,2025-09-13 23:42:00,33,
+ALR-00125,App Mobile,warning,2025-09-13 00:54:00,14,
+ALR-00126,Programa de Fidelidade,warning,2025-09-24 19:47:00,15,
+ALR-00127,App Mobile,warning,2025-09-13 04:41:00,9,SUST-3407
+ALR-00128,Cartões,critical,2025-09-20 23:46:00,22,
+ALR-00129,Portal de Relatórios,warning,2025-09-19 02:40:00,12,
+ALR-00130,Programa de Fidelidade,warning,2025-09-11 14:44:00,5,SUST-3395
+ALR-00131,Portal de Relatórios,critical,2025-09-11 18:59:00,20,
+ALR-00132,Portal de Relatórios,warning,2025-09-10 07:36:00,28,
+ALR-00133,Programa de Fidelidade,warning,2025-09-24 22:35:00,6,SUST-3395
+ALR-00134,Portal de Relatórios,critical,2025-09-24 07:42:00,3,
+ALR-00135,Pagamentos PIX,warning,2025-09-19 19:13:00,43,SUST-3383
+ALR-00136,Portal de Relatórios,warning,2025-09-08 03:43:00,9,
+ALR-00137,Marketplace,warning,2025-09-16 17:32:00,58,
+ALR-00138,App Mobile,warning,2025-09-23 00:47:00,17,
+ALR-00139,Pagamentos PIX,warning,2025-09-20 21:55:00,14,SUST-3391
+ALR-00140,Pagamentos PIX,warning,2025-09-13 02:40:00,14,
+ALR-00141,Crédito Pessoal,warning,2025-09-19 04:59:00,4,SUST-3410
+ALR-00142,Marketplace,warning,2025-09-16 12:30:00,23,SUST-3378
+ALR-00143,App Mobile,warning,2025-09-12 20:07:00,44,
+ALR-00144,Programa de Fidelidade,warning,2025-09-11 23:59:00,55,
+ALR-00145,App Mobile,critical,2025-09-05 08:15:00,5,SUST-3398
+ALR-00146,Portal de Relatórios,warning,2025-09-24 22:41:00,6,
+ALR-00147,Pagamentos PIX,critical,2025-09-02 10:28:00,55,
+ALR-00148,Programa de Fidelidade,warning,2025-09-04 16:10:00,23,
+ALR-00149,Pagamentos PIX,warning,2025-09-10 07:31:00,14,SUST-3381
+ALR-00150,Marketplace,warning,2025-09-27 21:57:00,17,
+ALR-00151,Programa de Fidelidade,critical,2025-09-18 21:20:00,16,
+ALR-00152,Pagamentos PIX,warning,2025-09-10 03:35:00,33,
+ALR-00153,App Mobile,critical,2025-09-09 03:07:00,9,
+ALR-00154,Marketplace,critical,2025-09-08 00:45:00,30,
+ALR-00155,Programa de Fidelidade,warning,2025-09-27 12:18:00,20,
+ALR-00156,Marketplace,critical,2025-09-21 20:43:00,14,
+ALR-00157,Portal de Relatórios,warning,2025-09-23 05:03:00,33,SUST-3397
+ALR-00158,App Mobile,warning,2025-09-21 11:39:00,3,
+ALR-00159,Crédito Pessoal,critical,2025-09-15 12:07:00,32,
+ALR-00160,Cartões,critical,2025-10-24 16:49:00,25,
+ALR-00161,Cartões,warning,2025-10-11 14:21:00,41,
+ALR-00162,App Mobile,warning,2025-10-12 03:42:00,43,
+ALR-00163,App Mobile,critical,2025-10-19 17:49:00,7,
+ALR-00164,Programa de Fidelidade,critical,2025-10-01 10:32:00,25,
+ALR-00165,Marketplace,warning,2025-10-02 03:08:00,26,
+ALR-00166,Portal de Relatórios,warning,2025-10-03 19:48:00,16,
+ALR-00167,Programa de Fidelidade,warning,2025-10-18 20:55:00,32,
+ALR-00168,Cartões,warning,2025-10-18 17:35:00,20,
+ALR-00169,App Mobile,critical,2025-10-07 06:16:00,27,
+ALR-00170,App Mobile,warning,2025-10-08 09:07:00,28,
+ALR-00171,Crédito Pessoal,critical,2025-10-14 14:41:00,10,SUST-3460
+ALR-00172,Crédito Pessoal,critical,2025-10-02 19:18:00,3,
+ALR-00173,Crédito Pessoal,warning,2025-10-26 01:24:00,27,
+ALR-00174,Marketplace,warning,2025-10-19 18:21:00,9,SUST-3484
+ALR-00175,App Mobile,critical,2025-10-18 22:43:00,15,
+ALR-00176,Pagamentos PIX,warning,2025-10-06 10:23:00,6,SUST-3478
+ALR-00177,Pagamentos PIX,critical,2025-10-19 08:07:00,39,
+ALR-00178,App Mobile,warning,2025-10-10 02:44:00,14,
+ALR-00179,Programa de Fidelidade,warning,2025-10-07 07:46:00,50,
+ALR-00180,Marketplace,warning,2025-10-26 06:06:00,15,
+ALR-00181,Cartões,warning,2025-10-24 04:08:00,10,
+ALR-00182,Portal de Relatórios,critical,2025-10-20 07:25:00,36,SUST-3483
+ALR-00183,Crédito Pessoal,warning,2025-10-26 15:42:00,18,
+ALR-00184,Portal de Relatórios,warning,2025-10-19 13:35:00,13,
+ALR-00185,Crédito Pessoal,warning,2025-10-15 01:32:00,21,
+ALR-00186,App Mobile,warning,2025-10-10 10:00:00,41,SUST-3476
+ALR-00187,Pagamentos PIX,warning,2025-10-17 20:18:00,60,
+ALR-00188,Cartões,warning,2025-10-10 01:40:00,19,
+ALR-00189,Pagamentos PIX,warning,2025-10-11 00:51:00,3,
+ALR-00190,App Mobile,warning,2025-10-17 04:07:00,9,
+ALR-00191,Marketplace,warning,2025-10-19 20:48:00,36,
+ALR-00192,Programa de Fidelidade,warning,2025-10-17 10:01:00,8,
+ALR-00193,Pagamentos PIX,critical,2025-10-15 13:11:00,36,
+ALR-00194,Cartões,warning,2025-10-23 00:21:00,40,
+ALR-00195,Portal de Relatórios,warning,2025-10-04 02:28:00,41,
+ALR-00196,Marketplace,critical,2025-10-22 17:21:00,26,
+ALR-00197,Pagamentos PIX,critical,2025-10-20 19:48:00,40,
+ALR-00198,Cartões,warning,2025-10-22 06:06:00,11,SUST-3457
+ALR-00199,Pagamentos PIX,warning,2025-10-16 11:52:00,30,
+ALR-00200,Programa de Fidelidade,warning,2025-10-17 14:39:00,32,
+ALR-00201,Programa de Fidelidade,warning,2025-10-13 16:49:00,13,
+ALR-00202,App Mobile,warning,2025-10-19 15:49:00,48,
+ALR-00203,Marketplace,warning,2025-10-08 13:09:00,29,
+ALR-00204,Programa de Fidelidade,warning,2025-10-21 08:52:00,8,
+ALR-00205,Pagamentos PIX,warning,2025-10-23 00:11:00,1,
+ALR-00206,Pagamentos PIX,warning,2025-10-25 13:31:00,25,
+ALR-00207,App Mobile,warning,2025-10-01 17:15:00,43,
+ALR-00208,Pagamentos PIX,warning,2025-10-04 13:25:00,9,
+ALR-00209,Cartões,warning,2025-10-22 22:51:00,30,
+ALR-00210,Cartões,warning,2025-10-23 02:53:00,43,
+ALR-00211,Crédito Pessoal,warning,2025-10-17 19:46:00,57,
+ALR-00212,Crédito Pessoal,critical,2025-10-04 01:42:00,18,
+ALR-00213,Programa de Fidelidade,warning,2025-10-09 10:22:00,19,
+ALR-00214,Marketplace,warning,2025-10-27 16:18:00,11,
+ALR-00215,Portal de Relatórios,warning,2025-10-10 01:06:00,11,SUST-3465
+ALR-00216,Cartões,warning,2025-11-21 22:22:00,42,
+ALR-00217,App Mobile,warning,2025-11-23 06:29:00,52,SUST-3568
+ALR-00218,Cartões,warning,2025-11-15 21:55:00,100,
+ALR-00219,Pagamentos PIX,critical,2025-11-06 07:42:00,8,
+ALR-00220,Cartões,warning,2025-11-20 21:47:00,37,SUST-3544
+ALR-00221,Crédito Pessoal,warning,2025-11-27 15:13:00,45,
+ALR-00222,Cartões,warning,2025-11-26 13:20:00,1,SUST-3564
+ALR-00223,Marketplace,warning,2025-11-06 10:05:00,18,SUST-3545
+ALR-00224,Crédito Pessoal,warning,2025-11-21 01:17:00,40,
+ALR-00225,Pagamentos PIX,warning,2025-11-23 16:40:00,2,
+ALR-00226,Crédito Pessoal,warning,2025-11-09 10:16:00,63,
+ALR-00227,Cartões,warning,2025-11-07 20:50:00,14,SUST-3571
+ALR-00228,App Mobile,warning,2025-11-01 01:09:00,14,SUST-3569
+ALR-00229,App Mobile,warning,2025-11-22 22:25:00,77,
+ALR-00230,Crédito Pessoal,warning,2025-11-27 22:37:00,12,
+ALR-00231,Programa de Fidelidade,critical,2025-11-13 16:52:00,76,
+ALR-00232,Programa de Fidelidade,critical,2025-11-03 03:08:00,42,SUST-3551
+ALR-00233,Programa de Fidelidade,warning,2025-11-10 20:04:00,5,
+ALR-00234,Programa de Fidelidade,critical,2025-11-01 04:29:00,17,
+ALR-00235,Marketplace,warning,2025-11-04 09:42:00,23,
+ALR-00236,Marketplace,critical,2025-11-18 20:01:00,10,
+ALR-00237,Programa de Fidelidade,critical,2025-11-24 17:47:00,12,
+ALR-00238,Programa de Fidelidade,warning,2025-11-25 13:28:00,15,
+ALR-00239,Portal de Relatórios,critical,2025-11-04 07:57:00,22,SUST-3536
+ALR-00240,Cartões,warning,2025-11-13 01:16:00,43,
+ALR-00241,Portal de Relatórios,warning,2025-11-09 06:42:00,35,
+ALR-00242,Crédito Pessoal,critical,2025-11-18 09:36:00,36,
+ALR-00243,App Mobile,critical,2025-11-06 08:10:00,15,
+ALR-00244,Crédito Pessoal,warning,2025-11-14 19:20:00,16,
+ALR-00245,Crédito Pessoal,warning,2025-11-09 03:34:00,34,
+ALR-00246,Crédito Pessoal,critical,2025-11-19 04:13:00,7,
+ALR-00247,Programa de Fidelidade,critical,2025-11-22 17:32:00,5,
+ALR-00248,Programa de Fidelidade,warning,2025-11-11 16:43:00,32,
+ALR-00249,Portal de Relatórios,critical,2025-11-06 07:37:00,25,
+ALR-00250,Portal de Relatórios,warning,2025-11-03 03:19:00,28,
+ALR-00251,Programa de Fidelidade,critical,2025-11-07 10:11:00,13,
+ALR-00252,Portal de Relatórios,critical,2025-11-19 05:25:00,16,
+ALR-00253,Cartões,warning,2025-11-14 19:48:00,19,SUST-3566
+ALR-00254,Cartões,critical,2025-11-08 13:13:00,52,
+ALR-00255,Programa de Fidelidade,warning,2025-11-07 10:36:00,34,
+ALR-00256,Programa de Fidelidade,critical,2025-11-20 12:55:00,32,
+ALR-00257,Marketplace,critical,2025-11-10 20:10:00,55,
+ALR-00258,Portal de Relatórios,warning,2025-11-13 16:36:00,53,
+ALR-00259,Cartões,warning,2025-11-16 23:47:00,15,SUST-3573
+ALR-00260,Cartões,warning,2025-11-12 13:34:00,6,
+ALR-00261,Crédito Pessoal,warning,2025-12-17 13:50:00,67,SUST-3625
+ALR-00262,Crédito Pessoal,warning,2025-12-25 16:59:00,11,
+ALR-00263,Portal de Relatórios,critical,2025-12-26 23:37:00,7,
+ALR-00264,Pagamentos PIX,critical,2025-12-14 21:47:00,18,
+ALR-00265,Portal de Relatórios,warning,2025-12-09 23:55:00,9,
+ALR-00266,Crédito Pessoal,warning,2025-12-24 10:33:00,44,
+ALR-00267,Cartões,warning,2025-12-21 19:59:00,19,SUST-3620
+ALR-00268,Crédito Pessoal,warning,2025-12-17 05:21:00,39,
+ALR-00269,Portal de Relatórios,critical,2025-12-23 23:02:00,15,
+ALR-00270,Crédito Pessoal,critical,2025-12-15 01:10:00,10,
+ALR-00271,Portal de Relatórios,critical,2025-12-27 13:44:00,40,
+ALR-00272,Portal de Relatórios,critical,2025-12-11 04:08:00,7,
+ALR-00273,Crédito Pessoal,warning,2025-12-25 07:52:00,14,
+ALR-00274,Pagamentos PIX,critical,2025-12-27 11:19:00,3,SUST-3639
+ALR-00275,Marketplace,warning,2025-12-11 17:48:00,0,
+ALR-00276,Marketplace,warning,2025-12-22 11:42:00,8,
+ALR-00277,Cartões,warning,2025-12-11 03:43:00,16,
+ALR-00278,Crédito Pessoal,warning,2025-12-16 07:34:00,8,
+ALR-00279,Portal de Relatórios,warning,2025-12-14 20:13:00,10,SUST-3617
+ALR-00280,Programa de Fidelidade,warning,2025-12-14 04:01:00,59,
+ALR-00281,App Mobile,critical,2025-12-03 12:26:00,19,SUST-3628
+ALR-00282,Crédito Pessoal,critical,2025-12-02 18:28:00,36,
+ALR-00283,Cartões,critical,2025-12-04 01:26:00,28,
+ALR-00284,Portal de Relatórios,critical,2025-12-10 17:54:00,21,
+ALR-00285,Pagamentos PIX,critical,2025-12-25 05:44:00,13,
+ALR-00286,Cartões,warning,2025-12-07 11:24:00,77,
+ALR-00287,Marketplace,critical,2025-12-19 19:26:00,54,
+ALR-00288,Pagamentos PIX,warning,2025-12-16 20:55:00,15,
+ALR-00289,Portal de Relatórios,warning,2025-12-25 16:39:00,26,
+ALR-00290,Cartões,warning,2025-12-11 21:35:00,18,
+ALR-00291,Programa de Fidelidade,warning,2025-12-01 22:21:00,16,
+ALR-00292,Marketplace,critical,2025-12-01 02:57:00,7,
+ALR-00293,Crédito Pessoal,warning,2025-12-18 05:18:00,29,
+ALR-00294,Programa de Fidelidade,warning,2025-12-23 23:15:00,14,
+ALR-00295,Cartões,warning,2025-12-13 15:12:00,19,
+ALR-00296,App Mobile,warning,2025-12-15 00:41:00,55,
+ALR-00297,Portal de Relatórios,critical,2025-12-19 21:20:00,33,
+ALR-00298,Portal de Relatórios,critical,2025-12-18 11:00:00,11,
+ALR-00299,App Mobile,warning,2025-12-09 22:32:00,17,
+ALR-00300,Cartões,warning,2025-12-17 14:43:00,34,
+ALR-00301,Portal de Relatórios,warning,2025-12-27 02:41:00,32,
+ALR-00302,Programa de Fidelidade,warning,2025-12-20 15:39:00,10,
+ALR-00303,Marketplace,warning,2025-12-12 22:53:00,12,
+ALR-00304,Marketplace,critical,2025-12-17 18:20:00,5,
+ALR-00305,Portal de Relatórios,critical,2025-12-04 21:02:00,18,
+ALR-00306,Portal de Relatórios,critical,2025-12-23 11:05:00,29,
+ALR-00307,Portal de Relatórios,warning,2025-12-11 10:32:00,9,
+ALR-00308,Marketplace,critical,2025-12-05 14:47:00,6,
+ALR-00309,Pagamentos PIX,warning,2025-12-16 18:58:00,35,

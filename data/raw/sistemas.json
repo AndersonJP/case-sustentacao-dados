@@ -1,0 +1,44 @@
+[
+  {
+    "sistema": "Marketplace",
+    "area_negocio": "Canais Digitais",
+    "squad": "Squad Shopping",
+    "criticidade": "Alta"
+  },
+  {
+    "sistema": "Pagamentos PIX",
+    "area_negocio": "Pagamentos",
+    "squad": "Squad Pagamentos",
+    "criticidade": "Alta"
+  },
+  {
+    "sistema": "Cartões",
+    "area_negocio": "Cartões",
+    "squad": "Squad Cartões",
+    "criticidade": "Alta"
+  },
+  {
+    "sistema": "Crédito Pessoal",
+    "area_negocio": "Crédito",
+    "squad": "Squad Crédito",
+    "criticidade": "Alta"
+  },
+  {
+    "sistema": "Programa de Fidelidade",
+    "area_negocio": "Relacionamento",
+    "squad": "Squad Fidelidade",
+    "criticidade": "Média"
+  },
+  {
+    "sistema": "App Mobile",
+    "area_negocio": "Canais Digitais",
+    "squad": "Squad App",
+    "criticidade": "Alta"
+  },
+  {
+    "sistema": "Portal de Relatórios",
+    "area_negocio": "Dados",
+    "squad": "Squad Dados",
+    "criticidade": "Média"
+  }
+]
